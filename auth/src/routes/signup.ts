@@ -31,6 +31,7 @@ router.post(
     // Password hashing would be implemented here
     const user = User.build({ email, password });
     await user.save();
+
     return res.status(201).send(user);
   }
 );
