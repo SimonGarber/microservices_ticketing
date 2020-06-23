@@ -12,7 +12,9 @@
     "ts-node-dev": "^1.0.0-pre.49",
     "typescript": "^3.9.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/mongoose": "^5.7.27"
+  },
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts"
   },
