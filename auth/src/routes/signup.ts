@@ -28,7 +28,7 @@ router.post(
     if (existingUser) {
       throw new BadRequestError("Email in use");
     }
-    // Password hashing would be implemented here
+
     const user = User.build({ email, password });
     await user.save();
 
