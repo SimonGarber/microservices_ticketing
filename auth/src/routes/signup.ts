@@ -40,7 +40,8 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      "asdf"
+      // signing key
+      process.env.JWT_KEY!
     );
     // store it on the session object
 
