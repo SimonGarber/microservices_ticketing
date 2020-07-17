@@ -56,11 +56,11 @@ global.signup = () => {
 
   // Turn that session into JSON
 
-  const sessoinJSON = JSON.stringify(session);
+  const sessionJSON = JSON.stringify(session);
 
   //  Take JSON and encode it as base64
 
-  const base64 = Buffer.from(sessoinJSON).toString("base64");
+  const base64 = Buffer.from(sessionJSON).toString("base64");
 
   //  Return a string that is the cookie with the encoded data
 
