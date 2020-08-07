@@ -24,7 +24,6 @@ const start = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }
-
   try {
     await natsWrapper.connect(
       process.env.NATS_CLUSTER_ID,
@@ -42,19 +41,25 @@ const start = async () => {
     process.on("SIGTERM", () => {
       natsWrapper.client.close();
     });
+  } catch (err) {
+    console.log(err);
+  }
 
-    new OrderCreatedListener(natsWrapper.client).listen();
-    new OrderCancelledListener(natsWrapper.client).listen();
+  new OrderCreatedListener(natsWrapper.client).listen();
+  new OrderCancelledListener(natsWrapper.client).listen();
 
+  try {
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log("Connected to MongoDB");
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
+
+  console.log("Connected to MongoDB");
+
   app.listen(3000, () => {
     console.log("Listening on Port 3000!!!");
   });

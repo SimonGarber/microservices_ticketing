@@ -1,7 +1,7 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import request from "supertest";
-import { app } from "../src/app";
+import { app } from "../app";
 import jwt from "jsonwebtoken";
 
 jest.setTimeout(30000);

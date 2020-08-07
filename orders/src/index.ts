@@ -52,6 +52,7 @@ const start = async () => {
     useUnifiedTopology: true,
     useCreateIndex: true,
   });
+
   console.log("Connected to MongoDB");
 
   app.listen(3000, () => {
