@@ -9,7 +9,7 @@ jest.setTimeout(30000);
 declare global {
   namespace NodeJS {
     interface Global {
-      signup(): string[];
+      signup(id?: string): string[];
     }
   }
 }
@@ -17,6 +17,8 @@ declare global {
 jest.mock("../nats-wrapper");
 
 let mongo: any;
+process.env.STRIPE_KEY = "sk_test_nHc0zrwlw9qAsdYFMxihqEmt00qSxBK9gb";
+
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -44,11 +46,11 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signup = () => {
+global.signup = (id?: string) => {
   // Build a JWT payload. {id, email}
 
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id || new mongoose.Types.ObjectId().toHexString(),
     email: "test@test.com",
   };
   // Create the JWT
