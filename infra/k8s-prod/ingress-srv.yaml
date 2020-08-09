@@ -10,7 +10,7 @@ spec:
     - host: www.box2.ca
       http:
         paths:
-          - path: /api/payments
+          - path: /api/payments/?(.*)
             backend:
               serviceName: payments-srv
               servicePort: 3000
